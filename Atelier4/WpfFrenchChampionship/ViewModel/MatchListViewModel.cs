@@ -10,7 +10,7 @@ using System.Collections.Specialized;
 
 namespace WpfFrenchChampionship.ViewModel
 {
-    public class MatchListViewModel : ViewModel, INotifyCollectionChanged
+    public class MatchListViewModel : ViewModel
     {
         private ObservableCollection<Match> _matches;
         private Ranking _ranking;
@@ -24,9 +24,7 @@ namespace WpfFrenchChampionship.ViewModel
 
         void _ranking_NewMatchRegistered(object sender, Ranking.MatchRegistrationEventArgs e)
         {
-           
             Match newMatch = new Match(e.NewMatch.Home, e.NewMatch.Away,e.NewMatch.HomeGoals, e.NewMatch.AwayGoals);
-            // test
             this._matches.Add(newMatch);
             RaisePropertyChanged("Matches");
         }
@@ -35,8 +33,5 @@ namespace WpfFrenchChampionship.ViewModel
           {
               get { return this._matches; }
           } 
-
-
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
     }
 }
